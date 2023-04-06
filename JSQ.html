@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>简易计算器</title>
+  </head>
+  <body>
+    <h1>简易计算器</h1>
+    <form>
+      <input type="text" id="num1">
+      <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+      </select>
+      <input type="text" id="num2">
+      <button type="button" onclick="calculate()">计算</button>
+    </form>
+    <p id="result"></p>
+    <script>
+      function calculate() {
+        var num1 = parseFloat(document.getElementById("num1").value);
+        var num2 = parseFloat(document.getElementById("num2").value);
+        var operator = document.getElementById("operator").value;
+        var result;
+        if (operator === "+") {
+          result = num1 + num2;
+        } else if (operator === "-") {
+          result = num1 - num2;
+        } else if (operator === "*") {
+          result = num1 * num2;
+        } else if (operator === "/") {
+          result = num1 / num2;
+        }
+        document.getElementById("result").innerHTML = "结果：" + result;
+      }
+    </script>
+  </body>
+</html>
