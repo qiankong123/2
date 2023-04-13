@@ -1,3 +1,4 @@
+# 预测算法
 
 # We can use linear regression to predict the next month's sales based on the existing data.
 

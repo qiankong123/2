@@ -1,3 +1,4 @@
+# 2贪吃蛇
 # Import necessary modules
 import pygame
 import time

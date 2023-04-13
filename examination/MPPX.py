@@ -1,0 +1,12 @@
+# 1冒泡排序
+
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1] :
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+arr = [18, 34,1,44,65,66,68]
+bubble_sort(arr)
+print(f"Sorted array is:{arr}")

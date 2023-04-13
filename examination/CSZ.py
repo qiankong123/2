@@ -1,5 +1,5 @@
 import random
-
+# 2猜数字
 # generate a random number between 1 and 100
 number = random.randint(1, 100)
 

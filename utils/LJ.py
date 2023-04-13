@@ -1,5 +1,7 @@
 import sys
 import os
+
+# 路径
  
 print('当前 Python 解释器路径：')
 print(sys.executable)
