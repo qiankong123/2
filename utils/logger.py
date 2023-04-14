@@ -1,24 +1,61 @@
 from os import rename, listdir
 from os.path import split, splitext, basename, exists, join, abspath
+# 格式化器Formatter, 过滤器Filter, 处理器Handler,记录器Loggers
 from logging import Formatter, Filter, FileHandler, StreamHandler
+# 文件大小，文件时间，分开存储文件
 from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler
 from logging import getLogger as logging_getLogger
 from multiprocessing import Queue
 from threading import Thread
 from traceback import format_exc
 
-from .utils import prepare_file_folder
+# 创建日志文件输出目录
+from utils import prepare_file_folder
 
+"""
+format日志格式
+%(levelno)s: 打印日志级别的数值
+%(levelname)s: 打印日志级别名称
+%(pathname)s: 打印当前执行程序的路径，其实就是sys.argv[0]
+%(filename)s: 打印当前执行程序名
+%(funcName)s: 打印日志的当前函数
+%(module)s 调用日志输出函数的模块名
+%(name)s : 所使用的日志名称，默认是'root'，因为默认使用的是 rootLogger
+%(msecs)d 日志事件发生事件的毫秒部分
+%(lineno)d: 打印日志的当前行号
+%(asctime)s 字符串形式的当前时间。默认格式是 “2003-07-08 16:49:45,896”。逗号后面的是毫秒
+%(relativeCreated)d 输出日志信息时的，自Logger创建以 来的毫秒数
+%(relativeCreated)d 日志事件发生的时间相对于logging模块加载时间的相对毫秒数（目前还不知道干嘛用的）
+%(thread)d: 打印线程ID
+%(threadName)s: 打印线程名称
+%(process)d: 打印进程ID
+%(message)s: 打印日志信息
 
+"""
+
+# 自定义日志输出格式【控制台】
 CONSOLE_BASIC_FORMAT = '[%(asctime)s.%(alignmsecs)s %(alignlevelname)s] %(message)s'
 CONSOLE_DATE_FORMAT = '%H:%M:%S'
 CONSOLE_FORMAT = Formatter(CONSOLE_BASIC_FORMAT, CONSOLE_DATE_FORMAT)
+
+
+# 自定义日志输出格式【文件】
 # correct_module
 #FILE_BASIC_FORMAT = "%(asctime)s.%(alignmsecs)s [%(alignlevelname)s %(module)s-%(lineno)d %(funcName)s] %(message)s"
 FILE_BASIC_FORMAT = "%(asctime)s.%(alignmsecs)s [%(alignlevelname)s %(module)s] %(message)s"
 FILE_DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
 FILE_FORMAT = Formatter(FILE_BASIC_FORMAT, FILE_DATE_FORMAT)
 
+
+"""
+级别        级别数值        使用时机
+'DEBUG'     10              详细信息
+'INFO '     20              运行产生的信息
+'WARN '     30              警告,可能出错(默认设置)
+'ERROR'     40              程序不能执行部分功能
+'CRITI'     50              程序不能运行
+"""
+# 自定义日志输出等级
 ALIGN_LEVEL_NAME = {'D': 'DEBUG',
                     'I': 'INFO ',
                     'W': 'WARN ',

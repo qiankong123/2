@@ -3,8 +3,8 @@ import os
 def prepare_file_folder(filename):
     
     filte = dirname(abspath(filename))
-    if exists(filte):
-        os.mkdir(filte)
+    if not exists(filte):
+        os.makedirs(filte)
     return filte
     
     
