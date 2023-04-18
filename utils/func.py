@@ -6,4 +6,9 @@ def func():
     a = 3
     logger.debug(f"a:{a}")
     print(logger)
+    print(666)
+
+
+if __name__ == "__main__":
+    print( func())
 
